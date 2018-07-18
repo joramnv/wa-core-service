@@ -73,7 +73,8 @@ dependencies {
 	compile "org.jetbrains.kotlin:kotlin-reflect"
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin:${fasterxmlJacksonVersion}"
 	compile "com.fasterxml.jackson.core:jackson-annotations:${fasterxmlJacksonVersion}"
-    compile "com.h2database:h2"
+
+    runtime "com.h2database:h2"
 
 	testCompile "org.springframework.boot:spring-boot-starter-test"
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
