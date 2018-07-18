@@ -1,0 +1,51 @@
+###
+#   Application server port
+###
+server:
+    port: ${PORT:8091}
+
+###
+#   Spring settings
+###
+spring:
+    application:
+        name: weekly-achievements-core-service
+    ###
+    #   Database settings
+    ###
+    datasource:
+        url: jdbc:h2:mem:WaCoreServiceApplication;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        platform: h2
+        username: sa
+        password:
+        driverClassName: org.h2.Driver
+    ###
+    #   H2 settings
+    ###
+    h2:
+        console:
+            enabled: true
+            path: /console
+            settings:
+                trace: false
+                web-allow-others: false
+    ###
+    #   Hibernate settings
+    ###
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                show_sql: false
+                use_sql_comments: false
+                format_sql: false
+
+###
+#   Eureka discovery service settings
+###
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8273/eureka/

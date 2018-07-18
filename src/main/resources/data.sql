@@ -1,0 +1,4 @@
+INSERT INTO USER (ID, EMAIL_ADDRESS) VALUES (uuid(), 'the_first@e-mail.address');
+INSERT INTO USER_PASSWORD (ID, USER_ID, PASSWORD) VALUES (uuid(), (SELECT ID FROM USER WHERE EMAIL_ADDRESS = 'the_first@e-mail.address'), 'w8word');
+INSERT INTO QUEST (ID, USER_ID, ACHIEVEMENT_POINT, DESCRIPTION, NAME) VALUES (uuid(), (SELECT ID FROM USER WHERE EMAIL_ADDRESS = 'the_first@e-mail.address'), 50, 'Vacuum cleaning the entire apartement, not a single corner excluded', 'Vacuum cleaning');
+INSERT INTO QUEST (ID, USER_ID, ACHIEVEMENT_POINT, DESCRIPTION, NAME) VALUES (uuid(), (SELECT ID FROM USER WHERE EMAIL_ADDRESS = 'the_first@e-mail.address'), 10, 'Doing the morning dishes; couple of plates, cups and cutlery.', 'Do the dishes');
