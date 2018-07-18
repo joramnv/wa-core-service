@@ -8,14 +8,14 @@ import javax.persistence.Id
 @Entity
 data class Quest(
 		@Id
-		@Column(name = "ID", nullable = false,  updatable = false, unique = true)
+		@Column(name = "ID", nullable = false, updatable = false, unique = true)
 		val id: UUID = UUID.randomUUID(),
 
 		val userId: UUID,
 
-        val name: String,
+		val name: String,
 
-        val description: String,
+		val description: String,
 
-        val achievementPoint: Long
+		val achievementPoint: Long
 )

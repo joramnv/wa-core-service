@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.hateoas.ResourceSupport
 
 data class Login @JsonCreator constructor(
-        @param:JsonProperty("emailAddress")
-        val emailAddress: String,
+		@param:JsonProperty("emailAddress")
+		val emailAddress: String,
 
-        @param:JsonProperty("password")
-        val password: String
+		@param:JsonProperty("password")
+		val password: String
 ) : ResourceSupport()

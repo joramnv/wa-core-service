@@ -26,52 +26,52 @@ import java.util.UUID
 class UserPasswordController(
 		private val repositoryEntityLinks: RepositoryEntityLinks,
 		private val userPasswordRepository: UserPasswordRepository,
-        private val userService: UserService
+		private val userService: UserService
 ) {
-    @RequestMapping(method = [POST], consumes = [APPLICATION_JSON_VALUE], produces = [HAL_JSON_VALUE])
-    fun createPassword(@RequestBody loginResource: Resource<Login>?): ResponseEntity<Login> {
-        val login = loginResource!!.content
+	@RequestMapping(method = [POST], consumes = [APPLICATION_JSON_VALUE], produces = [HAL_JSON_VALUE])
+	fun createPassword(@RequestBody loginResource: Resource<Login>?): ResponseEntity<Login> {
+		val login = loginResource!!.content
 
-	    val userId = userService.getUserId(login)
+		val userId = userService.getUserId(login)
 
-	    val userPassword = UserPassword(UUID.randomUUID(), userId, login.password)
-        try {
-            userPasswordRepository.save(userPassword)
-        } catch (e: Exception) {
-            //TODO catch right hibernate constraint exception.
-        }
+		val userPassword = UserPassword(UUID.randomUUID(), userId, login.password)
+		try {
+			userPasswordRepository.save(userPassword)
+		} catch (e: Exception) {
+			//TODO catch right hibernate constraint exception.
+		}
 
-        login.add(linkTo(methodOn(UserPasswordController::class.java).createPassword(loginResource)).withSelfRel())
+		login.add(linkTo(methodOn(UserPasswordController::class.java).createPassword(loginResource)).withSelfRel())
 
-        val linkToUser = repositoryEntityLinks.linkToSingleResource(User::class.java, userId)
-        login.add(linkToUser)
+		val linkToUser = repositoryEntityLinks.linkToSingleResource(User::class.java, userId)
+		login.add(linkToUser)
 
-        return ResponseEntity(login, OK)
-    }
+		return ResponseEntity(login, OK)
+	}
 
-    @RequestMapping(method = [PUT], consumes = [APPLICATION_JSON_VALUE], produces = [HAL_JSON_VALUE])
-    fun updatePassword(@RequestBody loginResource: Resource<Login>): ResponseEntity<Login> { //TODO do not (miss) use Login object.
-        val login = loginResource.content
+	@RequestMapping(method = [PUT], consumes = [APPLICATION_JSON_VALUE], produces = [HAL_JSON_VALUE])
+	fun updatePassword(@RequestBody loginResource: Resource<Login>): ResponseEntity<Login> { //TODO do not (miss) use Login object.
+		val login = loginResource.content
 
-        val userId = userService.getUserId(login)
+		val userId = userService.getUserId(login)
 
-        val oldUserPassword = userPasswordRepository.findByUserId(userId)
-		        .orElseThrow { RuntimeException("User password for e-mail address " + login.emailAddress + " not found.") } //TODO throw different error.
-        val updatedPassword = UserPassword(oldUserPassword.id, oldUserPassword.userId, login.password)
-        userPasswordRepository.save(updatedPassword)
+		val oldUserPassword = userPasswordRepository.findByUserId(userId)
+				.orElseThrow { RuntimeException("User password for e-mail address " + login.emailAddress + " not found.") } //TODO throw different error.
+		val updatedPassword = UserPassword(oldUserPassword.id, oldUserPassword.userId, login.password)
+		userPasswordRepository.save(updatedPassword)
 
-        val linkToUser = repositoryEntityLinks.linkToSingleResource(User::class.java, userId)
-        login.add(linkToUser)
+		val linkToUser = repositoryEntityLinks.linkToSingleResource(User::class.java, userId)
+		login.add(linkToUser)
 
-        return ResponseEntity(login, OK)
-    }
+		return ResponseEntity(login, OK)
+	}
 
-    @RequestMapping(method = [GET], produces = [HAL_JSON_VALUE])
-    @ResponseBody
-    fun savePassword(): ResponseEntity<Resources<*>> {
-        val producers = ArrayList<String>()
-        val resources = Resources(producers)
-        resources.add(linkTo(methodOn(UserPasswordController::class.java).createPassword(null)).withSelfRel())
-        return ResponseEntity.ok(resources)
-    }
+	@RequestMapping(method = [GET], produces = [HAL_JSON_VALUE])
+	@ResponseBody
+	fun savePassword(): ResponseEntity<Resources<*>> {
+		val producers = ArrayList<String>()
+		val resources = Resources(producers)
+		resources.add(linkTo(methodOn(UserPasswordController::class.java).createPassword(null)).withSelfRel())
+		return ResponseEntity.ok(resources)
+	}
 }

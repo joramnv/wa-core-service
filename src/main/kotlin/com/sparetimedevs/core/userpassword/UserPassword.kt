@@ -10,11 +10,11 @@ import javax.persistence.Table
 @Entity
 @Table(name = "USER_PASSWORD")
 data class UserPassword(
-        @Id
-        @Column(name = "ID", nullable = false, updatable = false)
-        val id: UUID = UUID.randomUUID(),
+		@Id
+		@Column(name = "ID", nullable = false, updatable = false)
+		val id: UUID = UUID.randomUUID(),
 
-        val userId: UUID,
+		val userId: UUID,
 
-        val password: String
+		val password: String
 ) : Serializable

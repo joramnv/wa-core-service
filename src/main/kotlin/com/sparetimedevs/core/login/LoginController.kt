@@ -28,7 +28,7 @@ class LoginController(
 	fun login(@RequestBody loginResource: Resource<Login>?): ResponseEntity<Login> {
 		val login = loginResource!!.content
 
-		val userId = 	loginValidator.validate(login)
+		val userId = loginValidator.validate(login)
 
 		val linkToSelf = linkTo(methodOn(LoginController::class.java).login(loginResource)).withSelfRel()
 		val linkToUserQuests = linkTo(methodOn(QuestController::class.java).findUserQuests(userId)).withRel("user-quests")

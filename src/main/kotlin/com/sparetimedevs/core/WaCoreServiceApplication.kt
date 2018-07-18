@@ -11,5 +11,5 @@ import org.springframework.context.annotation.ComponentScan
 class WaCoreServiceApplication
 
 fun main(args: Array<String>) {
-    runApplication<WaCoreServiceApplication>(*args)
+	runApplication<WaCoreServiceApplication>(*args)
 }

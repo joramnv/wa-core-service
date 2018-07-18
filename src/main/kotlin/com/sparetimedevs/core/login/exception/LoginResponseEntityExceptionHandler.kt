@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class LoginResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(value = [EmailAddressPasswordDoNotMatchException::class, IllegalArgumentException::class, IllegalStateException::class])
-    fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
-        return handleExceptionInternal(ex, ex.message, HttpHeaders(), UNAUTHORIZED, request)
-    }
+	@ExceptionHandler(value = [EmailAddressPasswordDoNotMatchException::class, IllegalArgumentException::class, IllegalStateException::class])
+	fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
+		return handleExceptionInternal(ex, ex.message, HttpHeaders(), UNAUTHORIZED, request)
+	}
 }

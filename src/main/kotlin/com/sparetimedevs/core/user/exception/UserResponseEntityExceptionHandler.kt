@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class UserResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(value = [UserNotFoundException::class])
-    fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
-        return handleExceptionInternal(ex, ex.message, HttpHeaders(), NOT_FOUND, request)
-    }
+	@ExceptionHandler(value = [UserNotFoundException::class])
+	fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
+		return handleExceptionInternal(ex, ex.message, HttpHeaders(), NOT_FOUND, request)
+	}
 }

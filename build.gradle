@@ -2,11 +2,11 @@ buildscript {
 	ext {
 		kotlinVersion = '1.2.51'
 		springBootVersion = '2.0.3.RELEASE'
-        fasterxmlJacksonVersion = '2.9.5'
-        junitJupiterVersion = '5.1.1'
-        mockitoCoreVersion = '2.18.0'
-        kotlintestVersion = '3.1.6'
-    }
+		fasterxmlJacksonVersion = '2.9.5'
+		junitJupiterVersion = '5.1.1'
+		mockitoCoreVersion = '2.18.0'
+		kotlintestVersion = '3.1.6'
+	}
 	repositories {
 		mavenCentral()
 	}
@@ -14,8 +14,8 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
-    }
+		classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
+	}
 }
 
 apply plugin: 'kotlin'
@@ -45,19 +45,19 @@ compileTestKotlin {
 
 repositories {
 	mavenCentral()
-    jcenter()
-    maven { url "http://dl.bintray.com/kotlin/ktor" }
-    maven { url "http://maven.springframework.org/release" }
+	jcenter()
+	maven { url "http://dl.bintray.com/kotlin/ktor" }
+	maven { url "http://maven.springframework.org/release" }
 }
 
 kotlin {
-    experimental {
-        coroutines 'enable'
-    }
+	experimental {
+		coroutines 'enable'
+	}
 }
 
 noArg {
-    invokeInitializers = true
+	invokeInitializers = true
 }
 
 ext {
@@ -66,23 +66,23 @@ ext {
 
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-hateoas"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
 	compile "org.springframework.data:spring-data-rest-hal-browser"
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	compile "org.jetbrains.kotlin:kotlin-reflect"
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin:${fasterxmlJacksonVersion}"
 	compile "com.fasterxml.jackson.core:jackson-annotations:${fasterxmlJacksonVersion}"
 
-    runtime "com.h2database:h2"
+	runtime "com.h2database:h2"
 
 	testCompile "org.springframework.boot:spring-boot-starter-test"
-    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-    testCompile "org.mockito:mockito-core:${mockitoCoreVersion}"
-    testCompile "io.kotlintest:kotlintest-runner-junit5:${kotlintestVersion}"
-    testCompile "io.kotlintest:kotlintest-extensions-spring:${kotlintestVersion}"
+	testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+	testCompile "org.mockito:mockito-core:${mockitoCoreVersion}"
+	testCompile "io.kotlintest:kotlintest-runner-junit5:${kotlintestVersion}"
+	testCompile "io.kotlintest:kotlintest-extensions-spring:${kotlintestVersion}"
 
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+	testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
 
 dependencyManagement {

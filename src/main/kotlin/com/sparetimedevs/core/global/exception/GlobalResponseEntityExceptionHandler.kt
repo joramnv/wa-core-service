@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class GlobalResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(value = [IllegalArgumentException::class, IllegalStateException::class])
-    fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
-        return handleExceptionInternal(ex, ex.message, HttpHeaders(), HttpStatus.CONFLICT, request) //TODO change this status
-    }
+	@ExceptionHandler(value = [IllegalArgumentException::class, IllegalStateException::class])
+	fun handleConflict(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
+		return handleExceptionInternal(ex, ex.message, HttpHeaders(), HttpStatus.CONFLICT, request) //TODO change this status
+	}
 }

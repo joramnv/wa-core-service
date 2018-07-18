@@ -13,5 +13,5 @@ data class User(
 		val id: UUID = UUID.randomUUID(),
 
 		@Column(name = "EMAIL_ADDRESS", unique = true, nullable = false, updatable = true)
-        val emailAddress: String
+		val emailAddress: String
 ) : Serializable

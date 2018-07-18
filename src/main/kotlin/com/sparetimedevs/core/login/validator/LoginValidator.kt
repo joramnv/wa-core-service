@@ -12,13 +12,13 @@ class LoginValidator(
 		private val userService: UserService,
 		private val userPasswordService: UserPasswordService
 ) {
-    fun validate(login: Login): UUID {
-	    val userId = userService.getUserId(login)
-        val userPassword = userPasswordService.getUserPassword(userId)
+	fun validate(login: Login): UUID {
+		val userId = userService.getUserId(login)
+		val userPassword = userPasswordService.getUserPassword(userId)
 
-        if (login.password != userPassword.password) {
-            throw EmailAddressPasswordDoNotMatchException("E-mail address password combination do not match for e-mail address " + login.emailAddress + ".")
-        }
-	    return userId
-    }
+		if (login.password != userPassword.password) {
+			throw EmailAddressPasswordDoNotMatchException("E-mail address password combination do not match for e-mail address " + login.emailAddress + ".")
+		}
+		return userId
+	}
 }
