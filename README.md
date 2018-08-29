@@ -12,7 +12,7 @@ The discovery service is at:
 
 Preferred way of accessing is via the running Gateway via:
 
-* http://localhost:8090/waa
+* http://localhost:8090/wacs
 
 But you can also access this service directly via:
 
